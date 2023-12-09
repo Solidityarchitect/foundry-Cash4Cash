@@ -11,8 +11,8 @@ How it's Made for front end : Used react native SDK - to coed the front end UI f
 EXPO: to display graphical interface to mobile, Third web : for wallet connection and integration, like metamask and rainbow kit Ether JS: interact with frontend and smart contract NextID : for social media onboarding integration like X twitter for web2 onboarding
 Backend : Polygon smart contract , Mombai testnet network, hardhat framework
 
-![1 pic](https://github.com/Solidityarchitect/foundry-lending/assets/125990317/aa7d8f42-26fd-46c8-af39-c58b439d3006)![2 pic](https://github.com/Solidityarchitect/foundry-lending/assets/125990317/9c909e23-03c3-4254-b5d3-4d551ba2b11b)
-![3 pic](https://github.com/Solidityarchitect/foundry-lending/assets/125990317/5bb763a4-7cfb-477b-8f19-7732f46b1cc1)
+![下载](https://github.com/Solidityarchitect/foundry-lending/assets/125990317/ef78fb17-80ea-41ab-a13d-e81f056683bf)
+
 
 ## Usage
 
