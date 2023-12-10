@@ -5,29 +5,32 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./PriceConverter.sol";
 
 contract LendingContract {
-    /* Type declarations */
-    using PriceConverter for uint256;
-
     /* State variables */
     // Chainlink Data Feeds Variables
     AggregatorV3Interface private s_priceFeed;
 
+    using PriceConverter for uint256;
+
     // LendingContract Variables
-    mapping(address => LoanRequest) public loanRequests;
+    mapping(address => LoanRequest) private loanRequests;
     IERC20 private immutable i_token;
     Lenders[] private lenders;
-    mapping(address => uint256) public nameToAmount;
-    mapping(address => uint256) public balances;
-    mapping(uint256 => RemainingLoanTime) public remainingLoanTerms;
+    mapping(address => uint256) private nameToAmount;
+    mapping(address => uint256) private balances;
+    mapping(uint256 => RemainingLoanTime) private remainingLoanTerms;
+    address[] private borrowers;
 
     /* Events */
     event Loan(address indexed lender, address indexed borrower, uint256 indexed amount);
     event Repay(address indexed borrower, address indexed lender, uint256 indexed amount);
-    event RequstLoan(address indexed borrower, uint256 indexed id, uint256 indexed amount, uint256 loanTerm);
+    event RequstLoan(
+        address indexed borrower, uint256 indexed id, uint256 indexed amount, uint256 loanTerm, address lender
+    );
 
     /* Errors */
     error LendingContract__TransferFailed();
 
+    /* Struct */
     struct Lenders {
         uint256 amount;
         address lender;
@@ -51,17 +54,16 @@ contract LendingContract {
     }
 
     /* External / Public Functions */
-    function requestLoan(uint256 orderId, uint256 amount, uint256 loanTerm) public {
+    function requestLoan(uint256 orderId, uint256 amount, uint256 loanTerm, address lender) public {
         loanRequests[msg.sender] = LoanRequest(orderId, amount, loanTerm);
         remainingLoanTerms[orderId] = RemainingLoanTime(loanTerm, block.timestamp, msg.sender);
-
-        emit RequstLoan(msg.sender, orderId, amount, loanTerm);
-    }
-
-    function addLender(uint256 orderId, address lender, uint256 amount) public {
+        borrowers.push(msg.sender);
+        // addLender
         require(orderId == loanRequests[msg.sender].orderId, "Invalid transaction ID");
         lenders.push(Lenders(amount, lender));
         nameToAmount[lender] = amount;
+
+        emit RequstLoan(msg.sender, orderId, amount, loanTerm, lender);
     }
 
     function lending(uint256 orderId, uint256 amount, address borrower) public {
@@ -88,7 +90,6 @@ contract LendingContract {
         emit Repay(msg.sender, lender, amount);
     }
 
-    /* Getter Functions */
     function remainingLoanTerm(uint256 orderId) public view returns (uint256) {
         require(orderId == loanRequests[msg.sender].orderId, "Invalid transaction ID");
         RemainingLoanTime memory request = remainingLoanTerms[orderId];
@@ -100,24 +101,41 @@ contract LendingContract {
         }
     }
 
+    /* Getter Functions */
     function getLoanRequest(address borrower) public view returns (uint256) {
         return loanRequests[borrower].amount.getConversionRate(s_priceFeed);
     }
-    // USDC/dollar
+    // USDC/USD
+
+    function getRemainingLoanTerms(uint256 orderId) public view returns (RemainingLoanTime memory) {
+        return remainingLoanTerms[orderId];
+    }
+
+    function getLoanRequests(address borrower) public view returns (LoanRequest memory) {
+        return loanRequests[borrower];
+    }
 
     function getNameToAmount(address lender) public view returns (uint256) {
         return nameToAmount[lender].getConversionRate(s_priceFeed);
     }
-    // USDC/dollar
+    // USDC/USD
+
+    function getBorrowers(uint256 index) public view returns (address) {
+        return borrowers[index];
+    }
 
     function getLenders(uint256 index) public view returns (Lenders memory) {
         return lenders[index];
     }
 
-    function getlenderBalance(address lender) public view returns (uint256) {
+    function getLenderBalance(address lender) public view returns (uint256) {
         return balances[lender].getConversionRate(s_priceFeed);
     }
-    // USDC/dollar
+    // USDC/USD
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
+    }
 
     /* fallback & receive */
     receive() external payable {}
