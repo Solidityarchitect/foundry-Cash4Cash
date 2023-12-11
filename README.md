@@ -35,6 +35,15 @@ The Cash4Cash team is proud of:
 
 [![David Zhang YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://vimeo.com/893176898)
 
+## Chianlink Hackathon Constellation:
+<br/>
+<p align="center">
+<a href="https://devpost.com/software/send-it-cash?ref_content=user-portfolio&ref_feature=in_progress" target="_blank">
+<img src="https://raw.githubusercontent.com/smartcontractkit/chainlink/develop/docs/logo-chainlink-blue.svg" width="225" alt="Chainlink logo">
+</a>
+</p>
+<br/>
+
 ## Usage
 
 ### Build
