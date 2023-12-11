@@ -1,16 +1,38 @@
 ## Send It
 
-MOBILE-BASED APP FOR CROSS-BORDER MONEY TRANSFERS Internationally move funds for far less the cost! We are building a crypto mobile money remittance app/Dapp that combines the convenience of Western Union with the efficiency of Uber delivery is an innovative and promising idea. By targeting individuals and organizations in third-world countries who lack access to traditional banking services, We are addressing a significant need in the market.
+Cash4Cash was inspired by the need to offer user-friendly, secure, and accessible financial services to low-income users. This inspiration particularly targets regions with limited access to sophisticated technology. Drawing from successful existing apps, the team aimed to forge a platform that's not just technologically advanced but also empowering for both users and couriers, promoting financial inclusivity and societal improvement.
 
-The app's decentralized approach, where delivery personnel bring cash directly to the recipients, adds an extra layer of convenience and accessibility. This model has the potential to revolutionize the remittance industry and empower individuals and organizations to support those in need
+What It Does Cash4Cash is a mobile light wallet app designed for streamlined cross-border remittances. It makes crypto-to-cash conversions simpler, especially in developing countries. Its key features include:
 
-A user-friendly mobile application that facilitates seamless cross-border money transfers using crypto in the background to keep it simple for users
+**• Real-time chat translation to overcome language barriers.**
 
-How it's Made for front end : Used react native SDK - to coed the front end UI for sending and receiving features
+**• Quick snap video/chat, providing a social media-like interaction.**
 
-EXPO: to display graphical interface to mobile, Third web : for wallet connection and integration, like metamask and rainbow kit Ether JS: interact with frontend and smart contract NextID : for social media onboarding integration like X twitter for web2 onboarding
-Backend : Polygon smart contract , Mombai testnet network, hardhat framework
-![下载](https://github.com/Solidityarchitect/foundry-send-it/assets/125990317/a31c2ee5-008f-46c2-824d-0727b17955d3)
+**• A self-custodial wallet, giving users complete control over their funds.**
+
+**• A dynamic time auction mechanism for transparent and fair transaction fees.**
+
+**• Multiple authentication methods, inclusive of biometric technologies, to boost security.**
+
+
+How We Built It Cash4Cash was developed using a blend of modern technologies such as React Native, EXPO, Third web, Ether JS, and NextID, built on the Polygon smart contract and Mombai testnet network. Foundry, solidity, Chainlink Data Feed, Makefile, Remix, Polygon The development focused on integrating complex functionalities like bidirectional rating systems and auction-based transaction mechanisms, all within a user-friendly interface.
+
+## Accomplishments That We're Proud Of
+
+The Cash4Cash team is proud of:
+
+**• Developing a platform that promotes financial inclusivity for low-income users.**
+
+**• Crafting an app that combines technological sophistication with user accessibility.**
+
+**• Implementing an innovative auction mechanism for fair transaction fees.**
+
+**• Integrating real-time translation, broadening global accessibility.**
+
+**• Establishing a self-custodial system in line with decentralization principles.**
+
+![24181702264379_ pic](https://github.com/Solidityarchitect/foundry-send-it/assets/125990317/bf8eb863-dc0a-4d10-8eaa-f78b1507923a)
+
 ## Usage
 
 ### Build
