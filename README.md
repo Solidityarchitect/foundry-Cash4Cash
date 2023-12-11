@@ -1,4 +1,4 @@
-## Send It
+## Cash4Cash
 
 Cash4Cash was inspired by the need to offer user-friendly, secure, and accessible financial services to low-income users. This inspiration particularly targets regions with limited access to sophisticated technology. Drawing from successful existing apps, the team aimed to forge a platform that's not just technologically advanced but also empowering for both users and couriers, promoting financial inclusivity and societal improvement.
 
