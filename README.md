@@ -52,6 +52,14 @@ The Cash4Cash team is proud of:
 $ forge build
 ```
 
+### Set .env
+
+```shell
+MUMBAI_RPC_URL=""
+PRIVATE_KEY=""
+POLYGONSCAN_API_KEY=""
+```
+
 ### Test
 
 ```shell
