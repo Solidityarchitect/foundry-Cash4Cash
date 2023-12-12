@@ -13,8 +13,8 @@ contract HelperConfig is Script {
     uint256 public DEFAULT_ANVIL_PRIVATE_KEY = 0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6;
 
     struct NetworkConfig {
-        address priceFeed;
         address usdc;
+        address priceFeed;
         uint256 deployerKey;
     }
 
@@ -28,16 +28,15 @@ contract HelperConfig is Script {
         }
     }
 
-    function getMumbaiUsdcConfig() public view returns (NetworkConfig memory) {
-        return NetworkConfig({
-            priceFeed: 0x572dDec9087154dC5dfBB1546Bb62713147e0Ab0, // USDC / USD on polygon Mumbai
+    function getMumbaiUsdcConfig() public view returns (NetworkConfig memory mumbaiNetworkConfig) {
+        mumbaiNetworkConfig = NetworkConfig({
             usdc: 0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97, // USDC address on polygon Mumbai
+            priceFeed: 0x572dDec9087154dC5dfBB1546Bb62713147e0Ab0, // USDC / USD on polygon Mumbai
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }
 
-    function getOrCreateAnvilUsdcConfig() public returns (NetworkConfig memory) {
-        // Check to see if we set an active network config
+    function getOrCreateAnvilUsdcConfig() public returns (NetworkConfig memory anvilNetworkConfig) {
         if (activeNetworkConfig.priceFeed != address(0)) {
             return activeNetworkConfig;
         }
@@ -46,12 +45,13 @@ contract HelperConfig is Script {
             DECIMALS,
             INITIAL_PRICE
         );
-        ERC20Mock usdcMock = new ERC20Mock("USDC", "USDC", msg.sender, 1000e6);
+
+        ERC20Mock usdcMock = new ERC20Mock("WETH", "WETH", msg.sender, 1000e8);
         vm.stopBroadcast();
 
-        return NetworkConfig({
-            priceFeed: address(mockPriceFeed),
+        anvilNetworkConfig = NetworkConfig({
             usdc: address(usdcMock),
+            priceFeed: address(mockPriceFeed), // ETH / USD
             deployerKey: DEFAULT_ANVIL_PRIVATE_KEY
         });
     }
