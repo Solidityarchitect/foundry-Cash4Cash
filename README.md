@@ -44,6 +44,8 @@ The Cash4Cash team is proud of:
 </p>
 <br/>
 
+![微信图片_20231221112109](https://github.com/Solidityarchitect/foundry-Cash4Cash/assets/125990317/363ee72a-34e1-4e1d-af3d-82eb9e8edabf)
+
 ## Usage
 
 ### Build
